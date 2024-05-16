@@ -59,3 +59,50 @@ func main() {
 	fmt.Println("Linked List:")
 	ll.Display()
 }
+
+
+///UPDATED 
+
+package main
+
+type Node struct {
+	value int
+	next  *Node
+}
+
+type linkedList struct {
+	head *Node
+}
+
+func (l *linkedList) add(value int) {
+	newNode := &Node{value: value} // Create a new node with the given value
+
+	if l.head == nil {
+		// If the list is empty, set the new node as the head
+		l.head = newNode
+	} else {
+		// Otherwise, traverse the list to find the last node
+		current := l.head
+		for current.next != nil {
+			current = current.next // Move to the next node
+		}
+		// After the loop, current points to the last node in the list
+		current.next = newNode // Link the new node to the end of the list
+	}
+}
+
+// adds to the front of a linkd list
+func (l *linkedList) push(value int) {
+
+	newNode := &Node{value: value}
+
+	if l.head == nil {
+		l.head = newNode
+
+	} else {
+		temp := l.head
+		l.head = newNode
+		l.head.next = temp
+	}
+}
+
