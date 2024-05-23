@@ -1,55 +1,64 @@
- 
-class ListNode {
-  constructor(val, next = null) {
-    this.val = val;
-    this.next = next;
-  }
+class Node{
+    constructor(data){
+        this.next = null
+        this.data = data;
+    } 
+
 }
 
+
+
+class LinkList {
+    constructor(){
+        this.head = null;
+    }
+}
+ // Initialize nodes
+let node1 = new Node(1);
+let node2 = new Node(2);
+let node3 = new Node(3);
+
+// Link the nodes
+node1.next = node2;
+node2.next = node3;
+
+// Create linked list and set the head
+let linkedList = new  LinkList();
+linkedList.head = node1;
+
+//previous = null null->currentNode1
+function reverses(node){
+    
+    //null<- node1->next->node2->node3->null
+    //previous 
+    //current 
+    //next
+
+    let current = node;
+    let prev = null;
   
-  function GetHead(head){
-      let prev = null;     // Initialize prev to null
-      let current = head;  // Start with head as the current node
-     
-      while(current !== null){
-        let nextTemp =  current.next; // next temp currently is 2
-        current.next = prev; // set next to previous first time around null
-        prev = current; // set prev to 1 isntead of null 
-        current =  nextTemp ;// current head moves to 2
-        
-        // nextTemp = head.Next = 2
-        // head.next = prev = Null
-        //prev = head prev now = 1
-        //head = nextTemp head now is 2 and its next value is 1 
-
-         //nextTemp = head.next = 3
-        // head.next = prev = 1
-        // prev = head prev now =2
-        //head = nextTempp head is now 3 and its next is 2 
-
-       //this repeats it should then be 3->2->1
-      }
+    while(current !=null){
+       let temp = current.next; 
+       current.next = prev; 
+       prev = current;
+       current = temp;
+    
+    }
+    
     return prev;
-  }
-
- 
- function printList(head) {
-  let current = head;
-  while (current !== null) {
-    console.log(current.val);
-    current = current.next;
-  }
-  console.log("null");
+  
 }
 
-// Create a sample linked list: 1 -> 2 -> 3
-let head = new ListNode(1);
-head.next = new ListNode(2);
-head.next.next = new ListNode(3);
-
-// Reverse the list
-let get = GetHead(head);
-
-// Print the reversed list
+linkedList.head = reverses(linkedList.head);
  
-printList(get);
+// Function to display the list
+function displayList(head) {
+    let current = head;
+    while (current !== null) {
+        console.log(current.data);
+        current = current.next;
+    }
+}
+
+displayList(linkedList.head)
+
